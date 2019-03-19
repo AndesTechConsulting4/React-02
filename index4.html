@@ -12,6 +12,7 @@
 <body>
 
     <div id="react1"> </div>
+    <hr/>
     <div id="react2"> </div>
     <div id="react3"> </div>
 
@@ -72,8 +73,84 @@ class UserForm extends React.Component
 
 }
 
+//-------------------------------------------------
 
-ReactDOM.render(<UserForm/>,document.getElementById('react3'));
+class UserForm2 extends React.Component
+{
+
+  state = {name:'', sname:'', age:18};
+
+  
+    
+  render(){
+   console.log("render2:")
+
+   return <form onSubmit={this.formSubmited}>
+
+   Name: <input type="text" value={this.state.name}
+   onChange={this.onChangeHandlerN} 
+   onBlur={this.onFocusLost}/> <br/>
+
+   SName: <input type="text" value={this.state.sname} 
+   onChange={this.onChangeHandlerS}/> <br/>
+
+   age: <input type="number" max="120" min="18"  
+   value={this.state.age} onChange={this.onChangeHandlerA} /> <br/>
+   <input type="submit" value="Send user data"/>
+   
+   <p>{ typeof(this.state.name)==='undefined'?'':this.state.name}
+   </p>
+   </form>;
+
+  }
+
+  onChangeHandlerN = (e) =>
+  {
+     const name = e.target.value; 
+     console.log("Name key press2: ", this.state);
+     this.setState({name: name});
+
+  }
+  onChangeHandlerS = (e) =>
+  {
+    const sname = e.target.value; 
+     console.log("SName key press2: ", this.state);
+     this.setState({sname: sname});
+
+  }
+  onChangeHandlerA = (e) =>
+  {
+     const age = e.target.value; 
+     console.log("Age key press2: ", this.state);
+     this.setState({age: age});
+
+  }
+
+  onFocusLost = () =>
+  {
+     console.log("Lost focus2: ", this.state.name);
+
+  }
+
+  formSubmited = (event) =>
+  {
+     event.preventDefault();
+
+     console.log("sb fdata: ", this.fdata);
+     console.log("sb props: ", this.props);
+
+     
+
+  
+
+
+  }
+
+}
+
+
+ReactDOM.render(<UserForm/>,document.getElementById('react1'));
+ReactDOM.render(<UserForm2/>,document.getElementById('react2'));
 
 </script>
 
