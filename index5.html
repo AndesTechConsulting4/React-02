@@ -26,7 +26,7 @@
 class UserForm2 extends React.Component
 {
 
-  state = {position:''};
+  state = {position:'programmer', positionName:'Pro'};
 
   
     
@@ -35,14 +35,16 @@ class UserForm2 extends React.Component
 
    return <form onSubmit={this.formSubmited}>
 
-   Position: <select onChange={this.onChangeHandler} value={this.state.position}> 
-   <option value="programmer">Pro</option>
-   <option value="hr_manager">HR</option>
+   Position: <select onChange={this.onChangeHandler} value={this.state.position}
+   selected> 
+   <option value="programmer" >Pro</option>
+   <option value="hr_manager">Кадровик</option>
    <option value="eng">Eng </option>
-   <option value="eng">Boss</option>
+   <option value="boss">Boss</option>
    </select>
    
-   <p>{ typeof(this.state.position)==='undefined'?'':this.state.position}
+   <p>{ typeof(this.state.position)==='undefined'?'':
+   `${this.state.positionName} : (${this.state.position})`}
    </p>
    </form>;
 
@@ -52,7 +54,9 @@ class UserForm2 extends React.Component
   {
      console.log("target: ", e.target);
      const position_value = e.target.value; 
-     this.setState({position: position_value});
+     const position_name = e.target.options[e.target.selectedIndex].text
+
+     this.setState({position: position_value, positionName: position_name});
      console.log("Name key press2: ", this.state);
   }
  
