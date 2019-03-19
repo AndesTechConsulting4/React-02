@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title> 1st React App </title>
+    <meta charset="utf-8">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> </script>
+</head>
+
+<body>
+
+    <div id="react1"> </div>
+    <hr/>
+    <div id="react2"> </div>
+    <div id="react3"> </div>
+
+    <script>
+        
+    </script>
+
+<script type="text/babel">
+'use strict'
+
+class UserForm2 extends React.Component
+{
+
+  state = {position:''};
+
+  
+    
+  render(){
+   console.log("render2:")
+
+   return <form onSubmit={this.formSubmited}>
+
+   Position: <select onChange={this.onChangeHandler} value={this.state.position}> 
+   <option value="programmer">Pro</option>
+   <option value="hr_manager">HR</option>
+   <option value="eng">Eng </option>
+   <option value="eng">Boss</option>
+   </select>
+   
+   <p>{ typeof(this.state.position)==='undefined'?'':this.state.position}
+   </p>
+   </form>;
+
+  }
+
+  onChangeHandler = (e) =>
+  {
+     console.log("target: ", e.target);
+     const position_value = e.target.value; 
+     this.setState({position: position_value});
+     console.log("Name key press2: ", this.state);
+  }
+ 
+
+  formSubmited = (event) =>
+  {
+     event.preventDefault();
+     console.log("sb fdata: ", this.fdata);
+     //console.log("sb props: ", this.props);
+
+
+  }
+
+}
+
+
+// ReactDOM.render(<UserForm/>,document.getElementById('react1'));
+ReactDOM.render(<UserForm2/>,document.getElementById('react2'));
+
+</script>
+
+</body>
+
+</html>
