@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title> 1st React App </title>
+    <meta charset="utf-8">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> </script>
+</head>
+
+<body>
+
+    <div id="react1"> </div>
+    <div id="react2"> </div>
+    <div id="react3"> </div>
+
+    <script>
+        
+    </script>
+
+<script type="text/babel">
+'use strict'
+
+//{this.refs.snameRef.value}
+
+class UserForm extends React.Component
+{
+
+  render(){
+   console.log("render:")
+
+   if(typeof(this.refs.nameRef)!=='undefined') {  
+   console.log("name: ", this.refs.nameRef.value);}
+
+   return <form onSubmit={this.formSubmited}>
+   Name: <input type="text" ref="nameRef" onChange={this.onChangeHandler} 
+   onBlur={this.onFocusLost}/> <br/>
+   SName: <input type="text" ref="snameRef" /> <br/>
+   age: <input type="number" max="120" min="18"  ref="ageRef" /> <br/>
+   <input type="submit" value="Send user data"/>
+   
+   <p>{ typeof(this.refs.nameRef)==='undefined'?'':this.refs.nameRef.value}
+   </p>
+   </form>;
+
+  }
+
+  onChangeHandler = () =>
+  {
+     console.log("key press: ", this.refs.nameRef.value);
+
+  }
+
+  onFocusLost = () =>
+  {
+     console.log("Lost focus: ", this.refs.nameRef.value);
+
+  }
+
+  formSubmited = (event) =>
+  {
+     event.preventDefault();
+      
+     console.log("refs..", this.refs);
+     console.log("sumbited..", this.props);
+
+     this.setState({});
+
+
+  }
+
+}
+
+
+ReactDOM.render(<UserForm/>,document.getElementById('react3'));
+
+</script>
+
+</body>
+
+</html>
