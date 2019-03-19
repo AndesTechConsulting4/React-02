@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title> 1st React App </title>
+    <meta charset="utf-8">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> </script>
+</head>
+
+<body>
+
+    <div id="react1"> </div>
+    <div id="react2"> </div>
+    <div id="react3"> </div>
+
+    <script>
+        
+    </script>
+
+<script type="text/babel">
+'use strict'
+
+
+const arrData = ['Atlas','Proton', 'Energy', 'Arian-2'];
+
+
+    // <li>Atlas</li>
+    // <li>Proton</li>
+    // <li>Energy</li>
+    // <li>Arian-2</li>
+
+
+class Item extends React.Component
+{
+    render(){
+        return <li> {this.props.rocket} </li>;
+    }
+}
+
+class ListItems extends React.Component
+{
+    
+render(){ 
+     
+    return <ol>
+        {
+            //arrData.map(x=>x)
+            //arrData.map((x)=> {return <Item rocket={x} key={x + Math.random()}/>})
+            arrData.map((x,k)=> {return <Item rocket={x} key={k}/>})
+        }
+    </ol>;
+}
+
+
+}
+
+class Button1 extends React.Component
+{
+    //2.
+    constructor()
+    {   super();
+        this.state = {data:1234, counter:0};  
+        //this.press = this.press.bind(this);
+    }
+
+//state = {data:1234, counter:0};
+global = {}; 
+    
+render(){
+     console.log('++render ', this.state);
+     return <button style={{color:this.props.color}}
+// 1.
+//onClick={this.press.bind(this)}> Press </button>;} 
+onClick={this.press}> Press + {this.state.counter} </button>;
+} 
+
+// 3.
+press = () => {
+//alert("Pressed!!!");    
+//let counter = this.state.counter + 1;
+//this.state.counter++;
+//this.setState({counter: this.state.counter});
+this.setState((st,pr) => { 
+    var a =1;
+    console.log("setState: ",st,pr);  
+    return {counter: st.counter + 1};
+});
+//this.setState({counter: this.state.counter + 1});
+//this.setState({counter: this.state.counter + 1});
+console.log("press: ", this.state);
+}
+
+}
+
+
+
+
+ReactDOM.render(<ListItems/>,document.getElementById('react1'));
+ReactDOM.render(<Button1 color="red"/>,document.getElementById('react2'));
+// ReactDOM.render(<Element3/>,document.getElementById('react3'));
+
+</script>
+
+</body>
+
+</html>

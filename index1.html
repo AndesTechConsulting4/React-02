@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title> 1st React App </title>
+    <meta charset="utf-8">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"> </script>
+</head>
+
+<body>
+
+    <div id="react1"> </div>
+    <div id="react2"> </div>
+    <div id="react3"> </div>
+
+
+
+    <script type="text/babel">
+    'use strict'
+
+class Element3 extends React.Component
+{
+  render(){
+     return (<div> <span> Input text: </span> </div>);
+     //return React.createElement('button',null,'My input...');
+  }
+
+}
+</script>        
+
+<script type="text/babel">
+'use strict'
+
+class Componet1 extends React.Component
+{
+data = new Date().toTimeString();    
+render(){ 
+    this.getData();
+    
+    return <div>
+    <h1>{"Hello!!"}</h1>
+    <h2>{this.props.data}</h2>
+    <Button1 color="purple"/>
+    <h2>{this.data}</h2>
+    </div>;
+}
+
+getData(){
+    console.log(this.data);
+}
+
+}
+
+class Button1 extends React.Component
+{
+render(){ return <button style={{color:this.props.color}}> Press </button>;} 
+}
+
+
+
+ReactDOM.render(<div><Componet1 data="123"></Componet1><Button1 color="green"/></div>,document.getElementById('react1'));
+ReactDOM.render(<Button1 color="red"/>,document.getElementById('react2'));
+ReactDOM.render(<Element3/>,document.getElementById('react3'));
+
+</script>
+
+</body>
+
+</html>
